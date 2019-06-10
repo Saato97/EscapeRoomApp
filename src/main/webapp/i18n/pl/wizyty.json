@@ -1,0 +1,24 @@
+{
+  "escapeRoomApp": {
+    "wizyty": {
+      "home": {
+        "title": "Wizyty",
+        "createLabel": "Dodaj Wizyty",
+        "createOrEditLabel": "Dodaj lub edytuj: Wizyty"
+      },
+      "created": "Utworzono nowy obiekt typu Wizyty z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Wizyty z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Wizyty z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Wizyty {{ id }}?"
+      },
+      "detail": {
+        "title": "Wizyty"
+      },
+      "dataWizyty": "Data Wizyty",
+      "opinie": "Opinie",
+      "klient": "Klient",
+      "escaperoom": "Escaperoom"
+    }
+  }
+}

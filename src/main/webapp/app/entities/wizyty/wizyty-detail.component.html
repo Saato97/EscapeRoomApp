@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="wizyty">
+            <h2><span jhiTranslate="escapeRoomApp.wizyty.detail.title">Wizyty</span> {{wizyty.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.dataWizyty">Data Wizyty</span></dt>
+                <dd>
+                    <span>{{wizyty.dataWizyty}}</span>
+                </dd>
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.opinie">Opinie</span></dt>
+                <dd>
+                    <div *ngIf="wizyty.opinie">
+                        <a [routerLink]="['/opinie', wizyty.opinie?.id, 'view']">{{wizyty.opinie?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.klient">Klient</span></dt>
+                <dd>
+                    <div *ngIf="wizyty.klient">
+                        <a [routerLink]="['/klient', wizyty.klient?.id, 'view']">{{wizyty.klient?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.escaperoom">Escaperoom</span></dt>
+                <dd>
+                    <div *ngIf="wizyty.escaperoom">
+                        <a [routerLink]="['/escape-room', wizyty.escaperoom?.id, 'view']">{{wizyty.escaperoom?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wizyty', wizyty.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

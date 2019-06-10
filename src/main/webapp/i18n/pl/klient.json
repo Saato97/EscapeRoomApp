@@ -1,0 +1,24 @@
+{
+  "escapeRoomApp": {
+    "klient": {
+      "home": {
+        "title": "Klient",
+        "createLabel": "Dodaj Klient",
+        "createOrEditLabel": "Dodaj lub edytuj: Klient"
+      },
+      "created": "Utworzono nowy obiekt typu Klient z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Klient z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Klient z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Klient {{ id }}?"
+      },
+      "detail": {
+        "title": "Klient"
+      },
+      "telefon": "Telefon",
+      "email": "Email",
+      "osoba": "Osoba",
+      "wizyty": "Wizyty"
+    }
+  }
+}

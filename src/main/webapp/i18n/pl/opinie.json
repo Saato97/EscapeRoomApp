@@ -1,0 +1,22 @@
+{
+  "escapeRoomApp": {
+    "opinie": {
+      "home": {
+        "title": "Opinie",
+        "createLabel": "Dodaj Opinie",
+        "createOrEditLabel": "Dodaj lub edytuj: Opinie"
+      },
+      "created": "Utworzono nowy obiekt typu Opinie z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Opinie z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Opinie z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Opinie {{ id }}?"
+      },
+      "detail": {
+        "title": "Opinie"
+      },
+      "opinia": "Opinia",
+      "wizyty": "Wizyty"
+    }
+  }
+}

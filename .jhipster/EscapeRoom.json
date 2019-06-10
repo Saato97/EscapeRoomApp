@@ -1,0 +1,94 @@
+{
+    "name": "EscapeRoom",
+    "fields": [
+        {
+            "fieldName": "ulica",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "miasto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kodPocztowy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stronaWWW",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nazwa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "opis",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "iloscOsob",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cena",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pktDoZdobycia",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "wymaganaIloscPkt",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "poziomTrudnosci",
+            "fieldType": "Poziom",
+            "fieldValues": "LATWY,SREDNI,TRUDNY,EXPERT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "czasNaPrzejscie",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "wizyty",
+            "otherEntityRelationshipName": "escaperoom",
+            "relationshipName": "wizyty"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "wlasciciel",
+            "otherEntityRelationshipName": "escaperoom",
+            "relationshipName": "wlasciciel",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190507194657",
+    "entityTableName": "escape_room",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

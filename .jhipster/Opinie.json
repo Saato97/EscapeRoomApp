@@ -1,0 +1,32 @@
+{
+    "name": "Opinie",
+    "fields": [
+        {
+            "fieldName": "opinia",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "wizyty",
+            "otherEntityRelationshipName": "opinie",
+            "relationshipValidateRules": "required",
+            "relationshipName": "wizyty",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507194655",
+    "entityTableName": "opinie",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

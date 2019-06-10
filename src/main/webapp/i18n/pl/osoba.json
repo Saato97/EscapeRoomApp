@@ -1,0 +1,26 @@
+{
+  "escapeRoomApp": {
+    "osoba": {
+      "home": {
+        "title": "Osoba",
+        "createLabel": "Dodaj Osoba",
+        "createOrEditLabel": "Dodaj lub edytuj: Osoba"
+      },
+      "created": "Utworzono nowy obiekt typu Osoba z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Osoba z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Osoba z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Osoba {{ id }}?"
+      },
+      "detail": {
+        "title": "Osoba"
+      },
+      "imie": "Imie",
+      "nazwisko": "Nazwisko",
+      "login": "Login",
+      "haslo": "Haslo",
+      "klient": "Klient",
+      "wlasciciel": "Wlasciciel"
+    }
+  }
+}

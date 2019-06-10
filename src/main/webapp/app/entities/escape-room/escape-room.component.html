@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="escapeRoomApp.escapeRoom.home.title">Escape Rooms</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-escape-room" [routerLink]="['/escape-room/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="escapeRoomApp.escapeRoom.home.createLabel">
+            Create new Escape Room
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="escapeRooms">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ulica"><span jhiTranslate="escapeRoomApp.escapeRoom.ulica">Ulica</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miasto"><span jhiTranslate="escapeRoomApp.escapeRoom.miasto">Miasto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="kodPocztowy"><span jhiTranslate="escapeRoomApp.escapeRoom.kodPocztowy">Kod Pocztowy</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="escapeRoomApp.escapeRoom.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefon"><span jhiTranslate="escapeRoomApp.escapeRoom.telefon">Telefon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="stronaWWW"><span jhiTranslate="escapeRoomApp.escapeRoom.stronaWWW">Strona WWW</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nazwa"><span jhiTranslate="escapeRoomApp.escapeRoom.nazwa">Nazwa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="opis"><span jhiTranslate="escapeRoomApp.escapeRoom.opis">Opis</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="iloscOsob"><span jhiTranslate="escapeRoomApp.escapeRoom.iloscOsob">Ilosc Osob</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cena"><span jhiTranslate="escapeRoomApp.escapeRoom.cena">Cena</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="pktDoZdobycia"><span jhiTranslate="escapeRoomApp.escapeRoom.pktDoZdobycia">Pkt Do Zdobycia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="wymaganaIloscPkt"><span jhiTranslate="escapeRoomApp.escapeRoom.wymaganaIloscPkt">Wymagana Ilosc Pkt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="poziomTrudnosci"><span jhiTranslate="escapeRoomApp.escapeRoom.poziomTrudnosci">Poziom Trudnosci</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="czasNaPrzejscie"><span jhiTranslate="escapeRoomApp.escapeRoom.czasNaPrzejscie">Czas Na Przejscie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let escapeRoom of escapeRooms ;trackBy: trackId">
+                <td><a [routerLink]="['/escape-room', escapeRoom.id, 'view' ]">{{escapeRoom.id}}</a></td>
+                <td>{{escapeRoom.ulica}}</td>
+                <td>{{escapeRoom.miasto}}</td>
+                <td>{{escapeRoom.kodPocztowy}}</td>
+                <td>{{escapeRoom.email}}</td>
+                <td>{{escapeRoom.telefon}}</td>
+                <td>{{escapeRoom.stronaWWW}}</td>
+                <td>{{escapeRoom.nazwa}}</td>
+                <td>{{escapeRoom.opis}}</td>
+                <td>{{escapeRoom.iloscOsob}}</td>
+                <td>{{escapeRoom.cena}}</td>
+                <td>{{escapeRoom.pktDoZdobycia}}</td>
+                <td>{{escapeRoom.wymaganaIloscPkt}}</td>
+                <td jhiTranslate="{{'escapeRoomApp.Poziom.' + escapeRoom.poziomTrudnosci}}">{{escapeRoom.poziomTrudnosci}}</td>
+                <td>{{escapeRoom.czasNaPrzejscie}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/escape-room', escapeRoom.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/escape-room', escapeRoom.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'escape-room', { outlets: { popup: escapeRoom.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="wlasciciel">
+            <h2><span jhiTranslate="escapeRoomApp.wlasciciel.detail.title">Wlasciciel</span> {{wlasciciel.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="escapeRoomApp.wlasciciel.osoba">Osoba</span></dt>
+                <dd>
+                    <div *ngIf="wlasciciel.osoba">
+                        <a [routerLink]="['/osoba', wlasciciel.osoba?.id, 'view']">{{wlasciciel.osoba?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wlasciciel', wlasciciel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

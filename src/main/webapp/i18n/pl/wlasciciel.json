@@ -1,0 +1,22 @@
+{
+  "escapeRoomApp": {
+    "wlasciciel": {
+      "home": {
+        "title": "Wlasciciel",
+        "createLabel": "Dodaj Wlasciciel",
+        "createOrEditLabel": "Dodaj lub edytuj: Wlasciciel"
+      },
+      "created": "Utworzono nowy obiekt typu Wlasciciel z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Wlasciciel z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Wlasciciel z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Wlasciciel {{ id }}?"
+      },
+      "detail": {
+        "title": "Wlasciciel"
+      },
+      "osoba": "Osoba",
+      "escaperoom": "Escaperoom"
+    }
+  }
+}

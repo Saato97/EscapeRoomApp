@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+
+    <!--
+        Added the entity EscapeRoom.
+    -->
+    <changeSet id="20190507194657-1" author="jhipster">
+        <createTable tableName="escape_room">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ulica" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="miasto" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="kod_pocztowy" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="telefon" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="strona_www" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nazwa" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="opis" type="clob">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="ilosc_osob" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cena" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pkt_do_zdobycia" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="wymagana_ilosc_pkt" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="poziom_trudnosci" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="czas_na_przejscie" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+    </changeSet>
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20190507194657-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/escape_room.csv"
+                  separator=";"
+                  tableName="escape_room"
+                  context="dev">
+            <column name="id" type="numeric"/>
+            <column name="ulica" type="string"/>
+            <column name="miasto" type="string"/>
+            <column name="kod_pocztowy" type="string"/>
+            <column name="email" type="string"/>
+            <column name="telefon" type="string"/>
+            <column name="strona_www" type="string"/>
+            <column name="nazwa" type="string"/>
+            <column name="opis" type="string"/>
+            <column name="ilosc_osob" type="string"/>
+            <column name="cena" type="numeric"/>
+            <column name="pkt_do_zdobycia" type="numeric"/>
+            <column name="wymagana_ilosc_pkt" type="numeric"/>
+            <column name="poziom_trudnosci" type="string"/>
+            <column name="czas_na_przejscie" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20190507194657-1-relations" author="jhipster">
+
+        <createTable tableName="escape_room_wlasciciel">
+            <column name="wlasciciel_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="escape_room_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="escape_room_id, wlasciciel_id" tableName="escape_room_wlasciciel"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

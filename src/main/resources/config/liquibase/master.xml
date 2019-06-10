@@ -5,6 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194652_added_entity_Osoba.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194653_added_entity_Wlasciciel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194654_added_entity_Klient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194655_added_entity_Opinie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194656_added_entity_Wizyty.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194657_added_entity_EscapeRoom.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190507194653_added_entity_constraints_Wlasciciel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194654_added_entity_constraints_Klient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194656_added_entity_constraints_Wizyty.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190507194657_added_entity_constraints_EscapeRoom.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

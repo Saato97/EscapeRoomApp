@@ -1,0 +1,36 @@
+{
+  "escapeRoomApp": {
+    "escapeRoom": {
+      "home": {
+        "title": "Escape Room",
+        "createLabel": "Dodaj Escape Room",
+        "createOrEditLabel": "Dodaj lub edytuj: Escape Room"
+      },
+      "created": "Utworzono nowy obiekt typu Escape Room z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Escape Room z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Escape Room z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Escape Room {{ id }}?"
+      },
+      "detail": {
+        "title": "Escape Room"
+      },
+      "ulica": "Ulica",
+      "miasto": "Miasto",
+      "kodPocztowy": "Kod Pocztowy",
+      "email": "Email",
+      "telefon": "Telefon",
+      "stronaWWW": "Strona WWW",
+      "nazwa": "Nazwa",
+      "opis": "Opis",
+      "iloscOsob": "Ilosc Osob",
+      "cena": "Cena",
+      "pktDoZdobycia": "Pkt Do Zdobycia",
+      "wymaganaIloscPkt": "Wymagana Ilosc Pkt",
+      "poziomTrudnosci": "Poziom Trudnosci",
+      "czasNaPrzejscie": "Czas Na Przejscie",
+      "wizyty": "Wizyty",
+      "wlasciciel": "Wlasciciel"
+    }
+  }
+}

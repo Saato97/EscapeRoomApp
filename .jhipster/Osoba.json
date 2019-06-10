@@ -1,0 +1,51 @@
+{
+    "name": "Osoba",
+    "fields": [
+        {
+            "fieldName": "imie",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nazwisko",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "login",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "haslo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "klient",
+            "otherEntityRelationshipName": "osoba",
+            "relationshipName": "klient"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "wlasciciel",
+            "otherEntityRelationshipName": "osoba",
+            "relationshipName": "wlasciciel"
+        }
+    ],
+    "changelogDate": "20190507194652",
+    "entityTableName": "osoba",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

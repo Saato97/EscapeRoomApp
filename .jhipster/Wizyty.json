@@ -1,0 +1,43 @@
+{
+    "name": "Wizyty",
+    "fields": [
+        {
+            "fieldName": "dataWizyty",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "opinie",
+            "otherEntityRelationshipName": "wizyty",
+            "relationshipName": "opinie",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "klient",
+            "otherEntityRelationshipName": "wizyty",
+            "relationshipValidateRules": "required",
+            "relationshipName": "klient",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "escapeRoom",
+            "otherEntityRelationshipName": "wizyty",
+            "relationshipName": "escaperoom",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190507194656",
+    "entityTableName": "wizyty",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

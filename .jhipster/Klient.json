@@ -1,0 +1,38 @@
+{
+    "name": "Klient",
+    "fields": [
+        {
+            "fieldName": "telefon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "osoba",
+            "otherEntityRelationshipName": "klient",
+            "relationshipValidateRules": "required",
+            "relationshipName": "osoba",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "wizyty",
+            "otherEntityRelationshipName": "klient",
+            "relationshipName": "wizyty"
+        }
+    ],
+    "changelogDate": "20190507194654",
+    "entityTableName": "klient",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity EscapeRoom.
+    -->
+    <changeSet id="20190507194657-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="escape_room_id"
+                                 baseTableName="escape_room_wlasciciel"
+                                 constraintName="fk_escape_room_wlasciciel_escape_room_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="escape_room"/>
+
+        <addForeignKeyConstraint baseColumnNames="wlasciciel_id"
+                                 baseTableName="escape_room_wlasciciel"
+                                 constraintName="fk_escape_room_wlasciciel_wlasciciel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wlasciciel"/>
+        
+    </changeSet>
+</databaseChangeLog>

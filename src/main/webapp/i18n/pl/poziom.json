@@ -1,0 +1,11 @@
+{
+  "escapeRoomApp": {
+    "Poziom": {
+      "null": "",
+      "LATWY": "LATWY",
+      "SREDNI": "SREDNI",
+      "TRUDNY": "TRUDNY",
+      "EXPERT": "EXPERT"
+    }
+  }
+}

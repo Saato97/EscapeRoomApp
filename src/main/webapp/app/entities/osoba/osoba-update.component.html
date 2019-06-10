@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-osoba-heading" jhiTranslate="escapeRoomApp.osoba.home.createOrEditLabel">Create or edit a Osoba</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!osoba.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.osoba.imie" for="field_imie">Imie</label>
+                    <input type="text" class="form-control" name="imie" id="field_imie"
+                           formControlName="imie"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.osoba.nazwisko" for="field_nazwisko">Nazwisko</label>
+                    <input type="text" class="form-control" name="nazwisko" id="field_nazwisko"
+                           formControlName="nazwisko"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.osoba.login" for="field_login">Login</label>
+                    <input type="text" class="form-control" name="login" id="field_login"
+                           formControlName="login"/>
+                    <div *ngIf="editForm.get('login').invalid && (editForm.get('login').dirty || editForm.get('login').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('login').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.osoba.haslo" for="field_haslo">Haslo</label>
+                    <input type="text" class="form-control" name="haslo" id="field_haslo"
+                           formControlName="haslo"/>
+                    <div *ngIf="editForm.get('haslo').invalid && (editForm.get('haslo').dirty || editForm.get('haslo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('haslo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-escape-room-heading" jhiTranslate="escapeRoomApp.escapeRoom.home.createOrEditLabel">Create or edit a Escape Room</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!escapeRoom.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.ulica" for="field_ulica">Ulica</label>
+                    <input type="text" class="form-control" name="ulica" id="field_ulica"
+                           formControlName="ulica"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.miasto" for="field_miasto">Miasto</label>
+                    <input type="text" class="form-control" name="miasto" id="field_miasto"
+                           formControlName="miasto"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.kodPocztowy" for="field_kodPocztowy">Kod Pocztowy</label>
+                    <input type="text" class="form-control" name="kodPocztowy" id="field_kodPocztowy"
+                           formControlName="kodPocztowy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.telefon" for="field_telefon">Telefon</label>
+                    <input type="text" class="form-control" name="telefon" id="field_telefon"
+                           formControlName="telefon"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.stronaWWW" for="field_stronaWWW">Strona WWW</label>
+                    <input type="text" class="form-control" name="stronaWWW" id="field_stronaWWW"
+                           formControlName="stronaWWW"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.nazwa" for="field_nazwa">Nazwa</label>
+                    <input type="text" class="form-control" name="nazwa" id="field_nazwa"
+                           formControlName="nazwa"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.opis" for="field_opis">Opis</label>
+                    <textarea class="form-control" name="opis" id="field_opis"
+                              formControlName="opis"></textarea>
+                    <div *ngIf="editForm.get('opis').invalid && (editForm.get('opis').dirty || editForm.get('opis').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('opis').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.iloscOsob" for="field_iloscOsob">Ilosc Osob</label>
+                    <input type="text" class="form-control" name="iloscOsob" id="field_iloscOsob"
+                           formControlName="iloscOsob"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.cena" for="field_cena">Cena</label>
+                    <input type="number" class="form-control" name="cena" id="field_cena"
+                           formControlName="cena"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.pktDoZdobycia" for="field_pktDoZdobycia">Pkt Do Zdobycia</label>
+                    <input type="number" class="form-control" name="pktDoZdobycia" id="field_pktDoZdobycia"
+                           formControlName="pktDoZdobycia"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.wymaganaIloscPkt" for="field_wymaganaIloscPkt">Wymagana Ilosc Pkt</label>
+                    <input type="number" class="form-control" name="wymaganaIloscPkt" id="field_wymaganaIloscPkt"
+                           formControlName="wymaganaIloscPkt"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.poziomTrudnosci" for="field_poziomTrudnosci">Poziom Trudnosci</label>
+                    <select class="form-control" name="poziomTrudnosci" formControlName="poziomTrudnosci" id="field_poziomTrudnosci">
+                        <option value="LATWY">{{'escapeRoomApp.Poziom.LATWY' | translate}}</option>
+                        <option value="SREDNI">{{'escapeRoomApp.Poziom.SREDNI' | translate}}</option>
+                        <option value="TRUDNY">{{'escapeRoomApp.Poziom.TRUDNY' | translate}}</option>
+                        <option value="EXPERT">{{'escapeRoomApp.Poziom.EXPERT' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('poziomTrudnosci').invalid && (editForm.get('poziomTrudnosci').dirty || editForm.get('poziomTrudnosci').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('poziomTrudnosci').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.czasNaPrzejscie" for="field_czasNaPrzejscie">Czas Na Przejscie</label>
+                    <input type="text" class="form-control" name="czasNaPrzejscie" id="field_czasNaPrzejscie"
+                           formControlName="czasNaPrzejscie"/>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="escapeRoomApp.escapeRoom.wlasciciel" for="field_wlasciciels">Wlasciciel</label>
+                    <select class="form-control" id="field_wlasciciels" multiple name="wlasciciels" formControlName="wlasciciels">
+                        <option [ngValue]="getSelected(editForm.get('wlasciciels').value, wlascicielOption)" *ngFor="let wlascicielOption of wlasciciels; trackBy: trackWlascicielById">{{wlascicielOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
