@@ -1,0 +1,65 @@
+
+
+entity EscapeRoom {
+	zdjecie ImageBlob,
+	ulica String,
+	miasto String,
+    kodPocztowy String,
+	email String,
+	telefon String,
+    stronaWWW String,
+    nazwa String,
+    opis TextBlob required,
+    iloscOsob String,
+    cena Integer,
+    pktDoZdobycia Integer,
+    wymaganaIloscPkt Integer,
+    poziomTrudnosci Poziom required,
+    czasNaPrzejscie String
+}
+
+entity Wizyty {
+    dataWizyty LocalDate
+}
+
+entity Wlasciciel {
+    imie String,
+    nazwisko String,
+}
+
+entity Opinie {
+    opinia TextBlob required
+}
+
+
+
+enum Poziom {
+    LATWY, SREDNI, TRUDNY, EXPERT
+}
+
+
+relationship OneToOne {
+	Wizyty{Opinie(opinia)} to Opinie{Wizyty required}
+}
+
+relationship ManyToMany {
+	EscapeRoom{Wlasciciel(imie)} to Wlasciciel{EscapeRoom(nazwa)}
+}
+
+relationship ManyToOne {
+	Wizyty{User(login)} to User,
+    Wizyty{EscapeRoom(nazwa)} to EscapeRoom{Wizyty}
+}
+
+
+// Set pagination options
+paginate Wizyty, EscapeRoom, Opinie with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

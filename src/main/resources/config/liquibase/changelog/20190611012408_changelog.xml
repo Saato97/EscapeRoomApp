@@ -1,0 +1,176 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="tomasz (generated)" id="1560216260280-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-2">
+        <createTable tableName="escape_room">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="escape_roomPK"/>
+            </column>
+            <column name="cena" type="INT"/>
+            <column name="czas_na_przejscie" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="ilosc_osob" type="VARCHAR(255)"/>
+            <column name="kod_pocztowy" type="VARCHAR(255)"/>
+            <column name="miasto" type="VARCHAR(255)"/>
+            <column name="nazwa" type="VARCHAR(255)"/>
+            <column name="opis" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pkt_do_zdobycia" type="INT"/>
+            <column name="poziom_trudnosci" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strona_www" type="VARCHAR(255)"/>
+            <column name="telefon" type="VARCHAR(255)"/>
+            <column name="ulica" type="VARCHAR(255)"/>
+            <column name="wymagana_ilosc_pkt" type="INT"/>
+            <column name="zdjecie" type="BLOB"/>
+            <column name="zdjecie_content_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-3">
+        <createTable tableName="escape_room_wlasciciel">
+            <column name="escape_room_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="wlasciciel_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-4">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-5">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="BINARY(255)"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-6">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-7">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="BINARY(255)"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="BINARY(255)"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="BINARY(255)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-8">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-9">
+        <createTable tableName="opinie">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="opiniePK"/>
+            </column>
+            <column name="opinia" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-10">
+        <createTable tableName="wizyty">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="wizytyPK"/>
+            </column>
+            <column name="data_wizyty" type="BINARY(255)"/>
+            <column name="escape_room_id" type="BIGINT"/>
+            <column name="opinie_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-11">
+        <createTable tableName="wlasciciel">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="wlascicielPK"/>
+            </column>
+            <column name="imie" type="VARCHAR(255)"/>
+            <column name="nazwisko" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-12">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-13">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-14">
+        <addUniqueConstraint columnNames="opinie_id" constraintName="UC_WIZYTYOPINIE_ID_COL" tableName="wizyty"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-16">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-17">
+        <addForeignKeyConstraint baseColumnNames="escape_room_id" baseTableName="escape_room_wlasciciel" constraintName="FK44v0s78uyoo9wfrufhmutfd20" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="escape_room" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-18">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-19">
+        <addForeignKeyConstraint baseColumnNames="wlasciciel_id" baseTableName="escape_room_wlasciciel" constraintName="FK5u5f0vkbyhv9v16m8jvrmiy0u" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="wlasciciel" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-20">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="wizyty" constraintName="FKgny56y0159v8ct54qvhgwcfgc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-21">
+        <addForeignKeyConstraint baseColumnNames="opinie_id" baseTableName="wizyty" constraintName="FKiajb9dq1p7bmy5m0e0r52ee95" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="opinie" validate="true"/>
+    </changeSet>
+    <changeSet author="tomasz (generated)" id="1560216260280-22">
+        <addForeignKeyConstraint baseColumnNames="escape_room_id" baseTableName="wizyty" constraintName="FKowqvnoeknu1um95l192o1irlv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="escape_room" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
