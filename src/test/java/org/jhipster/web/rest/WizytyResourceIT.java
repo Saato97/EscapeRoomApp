@@ -125,21 +125,7 @@ public class WizytyResourceIT {
         List<Wizyty> wizytyList = wizytyRepository.findAll();
         assertThat(wizytyList).hasSize(databaseSizeBeforeCreate);
     }
-
-
-    @Test
-    @Transactional
-    public void getAllWizyties() throws Exception {
-        // Initialize the database
-        wizytyRepository.saveAndFlush(wizyty);
-
-        // Get all the wizytyList
-        restWizytyMockMvc.perform(get("/api/wizyties?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(wizyty.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataWizyty").value(hasItem(DEFAULT_DATA_WIZYTY.toString())));
-    }
+    
     
     @Test
     @Transactional

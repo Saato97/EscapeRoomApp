@@ -132,19 +132,6 @@ public class OpinieResourceIT {
     }
 
 
-    @Test
-    @Transactional
-    public void getAllOpinies() throws Exception {
-        // Initialize the database
-        opinieRepository.saveAndFlush(opinie);
-
-        // Get all the opinieList
-        restOpinieMockMvc.perform(get("/api/opinies?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(opinie.getId().intValue())))
-            .andExpect(jsonPath("$.[*].opinia").value(hasItem(DEFAULT_OPINIA.toString())));
-    }
     
     @Test
     @Transactional
