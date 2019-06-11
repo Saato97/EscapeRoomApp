@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -22,6 +22,8 @@ export class EscapeRoomUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    zdjecie: [],
+    zdjecieContentType: [],
     ulica: [],
     miasto: [],
     kodPocztowy: [],
@@ -44,6 +46,7 @@ export class EscapeRoomUpdateComponent implements OnInit {
     protected jhiAlertService: JhiAlertService,
     protected escapeRoomService: EscapeRoomService,
     protected wlascicielService: WlascicielService,
+    protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -66,6 +69,8 @@ export class EscapeRoomUpdateComponent implements OnInit {
   updateForm(escapeRoom: IEscapeRoom) {
     this.editForm.patchValue({
       id: escapeRoom.id,
+      zdjecie: escapeRoom.zdjecie,
+      zdjecieContentType: escapeRoom.zdjecieContentType,
       ulica: escapeRoom.ulica,
       miasto: escapeRoom.miasto,
       kodPocztowy: escapeRoom.kodPocztowy,
@@ -116,6 +121,16 @@ export class EscapeRoomUpdateComponent implements OnInit {
     );
   }
 
+  clearInputImage(field: string, fieldContentType: string, idInput: string) {
+    this.editForm.patchValue({
+      [field]: null,
+      [fieldContentType]: null
+    });
+    if (this.elementRef && idInput && this.elementRef.nativeElement.querySelector('#' + idInput)) {
+      this.elementRef.nativeElement.querySelector('#' + idInput).value = null;
+    }
+  }
+
   previousState() {
     window.history.back();
   }
@@ -134,6 +149,8 @@ export class EscapeRoomUpdateComponent implements OnInit {
     const entity = {
       ...new EscapeRoom(),
       id: this.editForm.get(['id']).value,
+      zdjecieContentType: this.editForm.get(['zdjecieContentType']).value,
+      zdjecie: this.editForm.get(['zdjecie']).value,
       ulica: this.editForm.get(['ulica']).value,
       miasto: this.editForm.get(['miasto']).value,
       kodPocztowy: this.editForm.get(['kodPocztowy']).value,

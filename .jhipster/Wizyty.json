@@ -12,23 +12,22 @@
             "otherEntityName": "opinie",
             "otherEntityRelationshipName": "wizyty",
             "relationshipName": "opinie",
-            "otherEntityField": "id",
+            "otherEntityField": "opinia",
             "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "klient",
+            "otherEntityName": "user",
             "otherEntityRelationshipName": "wizyty",
-            "relationshipValidateRules": "required",
-            "relationshipName": "klient",
-            "otherEntityField": "id"
+            "relationshipName": "user",
+            "otherEntityField": "login"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "escapeRoom",
             "otherEntityRelationshipName": "wizyty",
-            "relationshipName": "escaperoom",
-            "otherEntityField": "id"
+            "relationshipName": "escapeRoom",
+            "otherEntityField": "nazwa"
         }
     ],
     "changelogDate": "20190507194656",

@@ -21,8 +21,12 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="osoba_id" type="bigint">
-                <constraints nullable="false" />
+            <column name="imie" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nazwisko" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -45,6 +49,8 @@
                   tableName="wlasciciel"
                   context="dev">
             <column name="id" type="numeric"/>
+            <column name="imie" type="string"/>
+            <column name="nazwisko" type="string"/>
         </loadData>
     </changeSet>
 

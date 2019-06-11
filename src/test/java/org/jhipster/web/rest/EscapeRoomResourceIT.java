@@ -40,6 +40,11 @@ import org.jhipster.domain.enumeration.Poziom;
 @SpringBootTest(classes = EscapeRoomApp.class)
 public class EscapeRoomResourceIT {
 
+    private static final byte[] DEFAULT_ZDJECIE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_ZDJECIE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_ZDJECIE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_ZDJECIE_CONTENT_TYPE = "image/png";
+
     private static final String DEFAULT_ULICA = "AAAAAAAAAA";
     private static final String UPDATED_ULICA = "BBBBBBBBBB";
 
@@ -127,6 +132,8 @@ public class EscapeRoomResourceIT {
      */
     public static EscapeRoom createEntity(EntityManager em) {
         EscapeRoom escapeRoom = new EscapeRoom()
+            .zdjecie(DEFAULT_ZDJECIE)
+            .zdjecieContentType(DEFAULT_ZDJECIE_CONTENT_TYPE)
             .ulica(DEFAULT_ULICA)
             .miasto(DEFAULT_MIASTO)
             .kodPocztowy(DEFAULT_KOD_POCZTOWY)
@@ -164,6 +171,8 @@ public class EscapeRoomResourceIT {
         List<EscapeRoom> escapeRoomList = escapeRoomRepository.findAll();
         assertThat(escapeRoomList).hasSize(databaseSizeBeforeCreate + 1);
         EscapeRoom testEscapeRoom = escapeRoomList.get(escapeRoomList.size() - 1);
+        assertThat(testEscapeRoom.getZdjecie()).isEqualTo(DEFAULT_ZDJECIE);
+        assertThat(testEscapeRoom.getZdjecieContentType()).isEqualTo(DEFAULT_ZDJECIE_CONTENT_TYPE);
         assertThat(testEscapeRoom.getUlica()).isEqualTo(DEFAULT_ULICA);
         assertThat(testEscapeRoom.getMiasto()).isEqualTo(DEFAULT_MIASTO);
         assertThat(testEscapeRoom.getKodPocztowy()).isEqualTo(DEFAULT_KOD_POCZTOWY);
@@ -229,6 +238,8 @@ public class EscapeRoomResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(escapeRoom.getId().intValue())))
+            .andExpect(jsonPath("$.[*].zdjecieContentType").value(hasItem(DEFAULT_ZDJECIE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].zdjecie").value(hasItem(Base64Utils.encodeToString(DEFAULT_ZDJECIE))))
             .andExpect(jsonPath("$.[*].ulica").value(hasItem(DEFAULT_ULICA.toString())))
             .andExpect(jsonPath("$.[*].miasto").value(hasItem(DEFAULT_MIASTO.toString())))
             .andExpect(jsonPath("$.[*].kodPocztowy").value(hasItem(DEFAULT_KOD_POCZTOWY.toString())))
@@ -289,6 +300,8 @@ public class EscapeRoomResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(escapeRoom.getId().intValue()))
+            .andExpect(jsonPath("$.zdjecieContentType").value(DEFAULT_ZDJECIE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.zdjecie").value(Base64Utils.encodeToString(DEFAULT_ZDJECIE)))
             .andExpect(jsonPath("$.ulica").value(DEFAULT_ULICA.toString()))
             .andExpect(jsonPath("$.miasto").value(DEFAULT_MIASTO.toString()))
             .andExpect(jsonPath("$.kodPocztowy").value(DEFAULT_KOD_POCZTOWY.toString()))
@@ -326,6 +339,8 @@ public class EscapeRoomResourceIT {
         // Disconnect from session so that the updates on updatedEscapeRoom are not directly saved in db
         em.detach(updatedEscapeRoom);
         updatedEscapeRoom
+            .zdjecie(UPDATED_ZDJECIE)
+            .zdjecieContentType(UPDATED_ZDJECIE_CONTENT_TYPE)
             .ulica(UPDATED_ULICA)
             .miasto(UPDATED_MIASTO)
             .kodPocztowy(UPDATED_KOD_POCZTOWY)
@@ -350,6 +365,8 @@ public class EscapeRoomResourceIT {
         List<EscapeRoom> escapeRoomList = escapeRoomRepository.findAll();
         assertThat(escapeRoomList).hasSize(databaseSizeBeforeUpdate);
         EscapeRoom testEscapeRoom = escapeRoomList.get(escapeRoomList.size() - 1);
+        assertThat(testEscapeRoom.getZdjecie()).isEqualTo(UPDATED_ZDJECIE);
+        assertThat(testEscapeRoom.getZdjecieContentType()).isEqualTo(UPDATED_ZDJECIE_CONTENT_TYPE);
         assertThat(testEscapeRoom.getUlica()).isEqualTo(UPDATED_ULICA);
         assertThat(testEscapeRoom.getMiasto()).isEqualTo(UPDATED_MIASTO);
         assertThat(testEscapeRoom.getKodPocztowy()).isEqualTo(UPDATED_KOD_POCZTOWY);

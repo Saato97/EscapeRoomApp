@@ -1,21 +1,22 @@
 {
     "name": "Wlasciciel",
-    "fields": [],
-    "relationships": [
+    "fields": [
         {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "osoba",
-            "otherEntityRelationshipName": "wlasciciel",
-            "relationshipValidateRules": "required",
-            "relationshipName": "osoba",
-            "otherEntityField": "id"
+            "fieldName": "imie",
+            "fieldType": "String"
         },
+        {
+            "fieldName": "nazwisko",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "escapeRoom",
             "otherEntityRelationshipName": "wlasciciel",
-            "relationshipName": "escaperoom",
-            "otherEntityField": "id",
+            "relationshipName": "escapeRoom",
+            "otherEntityField": "nazwa",
             "ownerSide": false
         }
     ],

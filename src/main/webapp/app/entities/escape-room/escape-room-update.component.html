@@ -10,6 +10,23 @@
                         readonly />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.zdjecie" for="field_zdjecie">Zdjecie</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('zdjecieContentType').value + ';base64,' + editForm.get('zdjecie').value" style="max-height: 100px;" *ngIf="editForm.get('zdjecie').value" alt="escapeRoom image"/>
+                        <div *ngIf="editForm.get('zdjecie').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('zdjecieContentType').value}}, {{byteSize(editForm.get('zdjecie').value)}}</span>
+                            <button type="button" (click)="clearInputImage('zdjecie', 'zdjecieContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_zdjecie" (change)="setFileData($event, 'zdjecie', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="zdjecie" id="field_zdjecie"
+                           formControlName="zdjecie"/>
+                    <input type="hidden" class="form-control" name="zdjecieContentType" id="field_zdjecieContentType"
+                           formControlName="zdjecieContentType" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="escapeRoomApp.escapeRoom.ulica" for="field_ulica">Ulica</label>
                     <input type="text" class="form-control" name="ulica" id="field_ulica"
                            formControlName="ulica"/>
@@ -99,7 +116,7 @@
                 <div class="form-group">
                     <label jhiTranslate="escapeRoomApp.escapeRoom.wlasciciel" for="field_wlasciciels">Wlasciciel</label>
                     <select class="form-control" id="field_wlasciciels" multiple name="wlasciciels" formControlName="wlasciciels">
-                        <option [ngValue]="getSelected(editForm.get('wlasciciels').value, wlascicielOption)" *ngFor="let wlascicielOption of wlasciciels; trackBy: trackWlascicielById">{{wlascicielOption.id}}</option>
+                        <option [ngValue]="getSelected(editForm.get('wlasciciels').value, wlascicielOption)" *ngFor="let wlascicielOption of wlasciciels; trackBy: trackWlascicielById">{{wlascicielOption.imie}}</option>
                     </select>
                 </div>
             </div>

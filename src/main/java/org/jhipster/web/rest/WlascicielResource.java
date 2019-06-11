@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -47,7 +46,7 @@ public class WlascicielResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/wlasciciels")
-    public ResponseEntity<Wlasciciel> createWlasciciel(@Valid @RequestBody Wlasciciel wlasciciel) throws URISyntaxException {
+    public ResponseEntity<Wlasciciel> createWlasciciel(@RequestBody Wlasciciel wlasciciel) throws URISyntaxException {
         log.debug("REST request to save Wlasciciel : {}", wlasciciel);
         if (wlasciciel.getId() != null) {
             throw new BadRequestAlertException("A new wlasciciel cannot already have an ID", ENTITY_NAME, "idexists");
@@ -68,7 +67,7 @@ public class WlascicielResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/wlasciciels")
-    public ResponseEntity<Wlasciciel> updateWlasciciel(@Valid @RequestBody Wlasciciel wlasciciel) throws URISyntaxException {
+    public ResponseEntity<Wlasciciel> updateWlasciciel(@RequestBody Wlasciciel wlasciciel) throws URISyntaxException {
         log.debug("REST request to update Wlasciciel : {}", wlasciciel);
         if (wlasciciel.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

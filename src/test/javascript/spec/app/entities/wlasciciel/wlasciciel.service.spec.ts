@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(WlascicielService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Wlasciciel(0);
+      elemDefault = new Wlasciciel(0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -57,7 +57,13 @@ describe('Service Tests', () => {
       });
 
       it('should update a Wlasciciel', async () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            imie: 'BBBBBB',
+            nazwisko: 'BBBBBB'
+          },
+          elemDefault
+        );
 
         const expected = Object.assign({}, returnedFromService);
         service
@@ -70,7 +76,13 @@ describe('Service Tests', () => {
       });
 
       it('should return a list of Wlasciciel', async () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            imie: 'BBBBBB',
+            nazwisko: 'BBBBBB'
+          },
+          elemDefault
+        );
         const expected = Object.assign({}, returnedFromService);
         service
           .query(expected)

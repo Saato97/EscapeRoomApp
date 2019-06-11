@@ -15,6 +15,7 @@
       "detail": {
         "title": "Escape Room"
       },
+      "zdjecie": "Zdjecie",
       "ulica": "Ulica",
       "miasto": "Miasto",
       "kodPocztowy": "Kod Pocztowy",
@@ -29,8 +30,8 @@
       "wymaganaIloscPkt": "Wymagana Ilosc Pkt",
       "poziomTrudnosci": "Poziom Trudnosci",
       "czasNaPrzejscie": "Czas Na Przejscie",
-      "wizyty": "Wizyty",
-      "wlasciciel": "Wlasciciel"
+      "wlasciciel": "Wlasciciel",
+      "wizyty": "Wizyty"
     }
   }
 }

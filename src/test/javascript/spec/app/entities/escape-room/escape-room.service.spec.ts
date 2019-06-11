@@ -25,6 +25,8 @@ describe('Service Tests', () => {
 
       elemDefault = new EscapeRoom(
         0,
+        'image/png',
+        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
@@ -75,6 +77,7 @@ describe('Service Tests', () => {
       it('should update a EscapeRoom', async () => {
         const returnedFromService = Object.assign(
           {
+            zdjecie: 'BBBBBB',
             ulica: 'BBBBBB',
             miasto: 'BBBBBB',
             kodPocztowy: 'BBBBBB',
@@ -106,6 +109,7 @@ describe('Service Tests', () => {
       it('should return a list of EscapeRoom', async () => {
         const returnedFromService = Object.assign(
           {
+            zdjecie: 'BBBBBB',
             ulica: 'BBBBBB',
             miasto: 'BBBBBB',
             kodPocztowy: 'BBBBBB',

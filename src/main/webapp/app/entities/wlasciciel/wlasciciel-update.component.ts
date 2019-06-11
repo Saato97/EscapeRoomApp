@@ -7,8 +7,6 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { IWlasciciel, Wlasciciel } from 'app/shared/model/wlasciciel.model';
 import { WlascicielService } from './wlasciciel.service';
-import { IOsoba } from 'app/shared/model/osoba.model';
-import { OsobaService } from 'app/entities/osoba';
 import { IEscapeRoom } from 'app/shared/model/escape-room.model';
 import { EscapeRoomService } from 'app/entities/escape-room';
 
@@ -20,19 +18,17 @@ export class WlascicielUpdateComponent implements OnInit {
   wlasciciel: IWlasciciel;
   isSaving: boolean;
 
-  osobas: IOsoba[];
-
   escaperooms: IEscapeRoom[];
 
   editForm = this.fb.group({
     id: [],
-    osoba: [null, Validators.required]
+    imie: [],
+    nazwisko: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected wlascicielService: WlascicielService,
-    protected osobaService: OsobaService,
     protected escapeRoomService: EscapeRoomService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -44,13 +40,6 @@ export class WlascicielUpdateComponent implements OnInit {
       this.updateForm(wlasciciel);
       this.wlasciciel = wlasciciel;
     });
-    this.osobaService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IOsoba[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IOsoba[]>) => response.body)
-      )
-      .subscribe((res: IOsoba[]) => (this.osobas = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.escapeRoomService
       .query()
       .pipe(
@@ -63,7 +52,8 @@ export class WlascicielUpdateComponent implements OnInit {
   updateForm(wlasciciel: IWlasciciel) {
     this.editForm.patchValue({
       id: wlasciciel.id,
-      osoba: wlasciciel.osoba
+      imie: wlasciciel.imie,
+      nazwisko: wlasciciel.nazwisko
     });
   }
 
@@ -85,7 +75,8 @@ export class WlascicielUpdateComponent implements OnInit {
     const entity = {
       ...new Wlasciciel(),
       id: this.editForm.get(['id']).value,
-      osoba: this.editForm.get(['osoba']).value
+      imie: this.editForm.get(['imie']).value,
+      nazwisko: this.editForm.get(['nazwisko']).value
     };
     return entity;
   }
@@ -104,10 +95,6 @@ export class WlascicielUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackOsobaById(index: number, item: IOsoba) {
-    return item.id;
   }
 
   trackEscapeRoomById(index: number, item: IEscapeRoom) {

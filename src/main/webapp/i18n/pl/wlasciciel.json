@@ -15,8 +15,9 @@
       "detail": {
         "title": "Wlasciciel"
       },
-      "osoba": "Osoba",
-      "escaperoom": "Escaperoom"
+      "imie": "Imie",
+      "nazwisko": "Nazwisko",
+      "escapeRoom": "Escape Room"
     }
   }
 }

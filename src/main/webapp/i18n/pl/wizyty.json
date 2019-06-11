@@ -17,8 +17,8 @@
       },
       "dataWizyty": "Data Wizyty",
       "opinie": "Opinie",
-      "klient": "Klient",
-      "escaperoom": "Escaperoom"
+      "user": "User",
+      "escapeRoom": "Escape Room"
     }
   }
 }

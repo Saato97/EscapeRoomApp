@@ -1,10 +1,24 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="escapeRoom">
-            <h2><span jhiTranslate="escapeRoomApp.escapeRoom.detail.title">Escape Room</span> {{escapeRoom.id}}</h2>
+            <h2>
+                <span>{{escapeRoom.nazwa}}</span>
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt></dt>
+                <dd>
+                    <div *ngIf="escapeRoom.zdjecie">
+                        <a (click)="openFile(escapeRoom.zdjecieContentType, escapeRoom.zdjecie)">
+                            <img [src]="'data:' + escapeRoom.zdjecieContentType + ';base64,' + escapeRoom.zdjecie" style="max-width: 100%;" alt="escapeRoom image"/>
+                        </a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="escapeRoomApp.escapeRoom.opis">Opis</span></dt>
+                <dd>
+                    <span>{{escapeRoom.opis}}</span>
+                </dd>
                 <dt><span jhiTranslate="escapeRoomApp.escapeRoom.ulica">Ulica</span></dt>
                 <dd>
                     <span>{{escapeRoom.ulica}}</span>
@@ -28,14 +42,6 @@
                 <dt><span jhiTranslate="escapeRoomApp.escapeRoom.stronaWWW">Strona WWW</span></dt>
                 <dd>
                     <span>{{escapeRoom.stronaWWW}}</span>
-                </dd>
-                <dt><span jhiTranslate="escapeRoomApp.escapeRoom.nazwa">Nazwa</span></dt>
-                <dd>
-                    <span>{{escapeRoom.nazwa}}</span>
-                </dd>
-                <dt><span jhiTranslate="escapeRoomApp.escapeRoom.opis">Opis</span></dt>
-                <dd>
-                    <span>{{escapeRoom.opis}}</span>
                 </dd>
                 <dt><span jhiTranslate="escapeRoomApp.escapeRoom.iloscOsob">Ilosc Osob</span></dt>
                 <dd>
@@ -64,7 +70,7 @@
                 <dt><span jhiTranslate="escapeRoomApp.escapeRoom.wlasciciel">Wlasciciel</span></dt>
                 <dd>
                     <span *ngFor="let wlasciciel of escapeRoom.wlasciciels; let last = last">
-                        <a [routerLink]="['/wlasciciel', wlasciciel?.id, 'view' ]">{{wlasciciel.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/wlasciciel', wlasciciel?.id, 'view' ]">{{wlasciciel.imie}} {{wlasciciel.nazwisko}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>
@@ -75,7 +81,7 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
                     [routerLink]="['/escape-room', escapeRoom.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>

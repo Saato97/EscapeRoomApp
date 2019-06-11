@@ -27,11 +27,11 @@
             <column name="opinie_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_wizyty_opinie_id" />
             </column>
-            <column name="klient_id" type="bigint">
-                <constraints nullable="false" />
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
             </column>
 
-            <column name="escaperoom_id" type="bigint">
+            <column name="escape_room_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

@@ -105,7 +105,7 @@ public class OpinieResource {
                 .collect(Collectors.toList()), HttpStatus.OK);
         }
         log.debug("REST request to get a page of Opinies");
-        Page<Opinie> page = opinieRepository.findAll(pageable);
+        Page<Opinie> page = opinieRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

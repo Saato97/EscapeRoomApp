@@ -9,20 +9,17 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
-
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wlasciciel.osoba" for="field_osoba">Osoba</label>
-                    <select class="form-control" id="field_osoba" name="osoba" formControlName="osoba">
-                        <option *ngIf="!editForm.get('osoba').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="osobaOption.id === editForm.get('osoba').value?.id ? editForm.get('osoba').value : osobaOption" *ngFor="let osobaOption of osobas; trackBy: trackOsobaById">{{osobaOption.id}}</option>
-                    </select>
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wlasciciel.imie" for="field_imie">Imie</label>
+                    <input type="text" class="form-control" name="imie" id="field_imie"
+                           formControlName="imie"/>
                 </div>
-                <div *ngIf="editForm.get('osoba').invalid && (editForm.get('osoba').dirty || editForm.get('osoba').touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('osoba').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wlasciciel.nazwisko" for="field_nazwisko">Nazwisko</label>
+                    <input type="text" class="form-control" name="nazwisko" id="field_nazwisko"
+                           formControlName="nazwisko"/>
                 </div>
+
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

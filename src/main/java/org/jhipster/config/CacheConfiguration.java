@@ -43,18 +43,14 @@ public class CacheConfiguration {
             createCache(cm, org.jhipster.domain.User.class.getName());
             createCache(cm, org.jhipster.domain.Authority.class.getName());
             createCache(cm, org.jhipster.domain.User.class.getName() + ".authorities");
-            createCache(cm, org.jhipster.domain.Osoba.class.getName());
-            createCache(cm, org.jhipster.domain.Osoba.class.getName() + ".klients");
-            createCache(cm, org.jhipster.domain.Osoba.class.getName() + ".wlasciciels");
             createCache(cm, org.jhipster.domain.Wlasciciel.class.getName());
             createCache(cm, org.jhipster.domain.Wlasciciel.class.getName() + ".escaperooms");
-            createCache(cm, org.jhipster.domain.Klient.class.getName());
-            createCache(cm, org.jhipster.domain.Klient.class.getName() + ".wizyties");
             createCache(cm, org.jhipster.domain.Opinie.class.getName());
             createCache(cm, org.jhipster.domain.Wizyty.class.getName());
             createCache(cm, org.jhipster.domain.EscapeRoom.class.getName());
             createCache(cm, org.jhipster.domain.EscapeRoom.class.getName() + ".wizyties");
             createCache(cm, org.jhipster.domain.EscapeRoom.class.getName() + ".wlasciciels");
+            createCache(cm, org.jhipster.domain.Wlasciciel.class.getName() + ".escapeRooms");
             // jhipster-needle-ehcache-add-entry
         };
     }

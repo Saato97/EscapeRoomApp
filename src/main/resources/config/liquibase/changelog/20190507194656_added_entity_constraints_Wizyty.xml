@@ -14,15 +14,15 @@
                                  referencedColumnNames="id"
                                  referencedTableName="opinie"/>
 
-        <addForeignKeyConstraint baseColumnNames="klient_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="wizyty"
-                                 constraintName="fk_wizyty_klient_id"
+                                 constraintName="fk_wizyty_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="klient"/>
+                                 referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="escaperoom_id"
+        <addForeignKeyConstraint baseColumnNames="escape_room_id"
                                  baseTableName="wizyty"
-                                 constraintName="fk_wizyty_escaperoom_id"
+                                 constraintName="fk_wizyty_escape_room_id"
                                  referencedColumnNames="id"
                                  referencedTableName="escape_room"/>
 

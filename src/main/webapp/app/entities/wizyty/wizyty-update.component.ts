@@ -10,8 +10,7 @@ import { IWizyty, Wizyty } from 'app/shared/model/wizyty.model';
 import { WizytyService } from './wizyty.service';
 import { IOpinie } from 'app/shared/model/opinie.model';
 import { OpinieService } from 'app/entities/opinie';
-import { IKlient } from 'app/shared/model/klient.model';
-import { KlientService } from 'app/entities/klient';
+import { IUser, UserService } from 'app/core';
 import { IEscapeRoom } from 'app/shared/model/escape-room.model';
 import { EscapeRoomService } from 'app/entities/escape-room';
 
@@ -25,7 +24,7 @@ export class WizytyUpdateComponent implements OnInit {
 
   opinies: IOpinie[];
 
-  klients: IKlient[];
+  users: IUser[];
 
   escaperooms: IEscapeRoom[];
   dataWizytyDp: any;
@@ -34,15 +33,15 @@ export class WizytyUpdateComponent implements OnInit {
     id: [],
     dataWizyty: [],
     opinie: [],
-    klient: [null, Validators.required],
-    escaperoom: []
+    user: [],
+    escapeRoom: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected wizytyService: WizytyService,
     protected opinieService: OpinieService,
-    protected klientService: KlientService,
+    protected userService: UserService,
     protected escapeRoomService: EscapeRoomService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -79,13 +78,13 @@ export class WizytyUpdateComponent implements OnInit {
         },
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-    this.klientService
+    this.userService
       .query()
       .pipe(
-        filter((mayBeOk: HttpResponse<IKlient[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IKlient[]>) => response.body)
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
       )
-      .subscribe((res: IKlient[]) => (this.klients = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.escapeRoomService
       .query()
       .pipe(
@@ -100,8 +99,8 @@ export class WizytyUpdateComponent implements OnInit {
       id: wizyty.id,
       dataWizyty: wizyty.dataWizyty,
       opinie: wizyty.opinie,
-      klient: wizyty.klient,
-      escaperoom: wizyty.escaperoom
+      user: wizyty.user,
+      escapeRoom: wizyty.escapeRoom
     });
   }
 
@@ -125,8 +124,8 @@ export class WizytyUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       dataWizyty: this.editForm.get(['dataWizyty']).value,
       opinie: this.editForm.get(['opinie']).value,
-      klient: this.editForm.get(['klient']).value,
-      escaperoom: this.editForm.get(['escaperoom']).value
+      user: this.editForm.get(['user']).value,
+      escapeRoom: this.editForm.get(['escapeRoom']).value
     };
     return entity;
   }
@@ -151,7 +150,7 @@ export class WizytyUpdateComponent implements OnInit {
     return item.id;
   }
 
-  trackKlientById(index: number, item: IKlient) {
+  trackUserById(index: number, item: IUser) {
     return item.id;
   }
 

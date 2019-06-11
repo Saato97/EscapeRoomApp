@@ -12,19 +12,17 @@
                 <dt><span jhiTranslate="escapeRoomApp.wizyty.opinie">Opinie</span></dt>
                 <dd>
                     <div *ngIf="wizyty.opinie">
-                        <a [routerLink]="['/opinie', wizyty.opinie?.id, 'view']">{{wizyty.opinie?.id}}</a>
+                        <a [routerLink]="['/opinie', wizyty.opinie?.id, 'view']">{{wizyty.opinie?.opinia}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="escapeRoomApp.wizyty.klient">Klient</span></dt>
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.user">User</span></dt>
                 <dd>
-                    <div *ngIf="wizyty.klient">
-                        <a [routerLink]="['/klient', wizyty.klient?.id, 'view']">{{wizyty.klient?.id}}</a>
-                    </div>
+                    {{wizyty.user?.login}}
                 </dd>
-                <dt><span jhiTranslate="escapeRoomApp.wizyty.escaperoom">Escaperoom</span></dt>
+                <dt><span jhiTranslate="escapeRoomApp.wizyty.escapeRoom">Escape Room</span></dt>
                 <dd>
-                    <div *ngIf="wizyty.escaperoom">
-                        <a [routerLink]="['/escape-room', wizyty.escaperoom?.id, 'view']">{{wizyty.escaperoom?.id}}</a>
+                    <div *ngIf="wizyty.escapeRoom">
+                        <a [routerLink]="['/escape-room', wizyty.escapeRoom?.id, 'view']">{{wizyty.escapeRoom?.nazwa}}</a>
                     </div>
                 </dd>
             </dl>

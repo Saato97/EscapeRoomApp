@@ -16,9 +16,9 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="dataWizyty"><span jhiTranslate="escapeRoomApp.wizyty.dataWizyty">Data Wizyty</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="opinie.id"><span jhiTranslate="escapeRoomApp.wizyty.opinie">Opinie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="klient.id"><span jhiTranslate="escapeRoomApp.wizyty.klient">Klient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="escaperoom.id"><span jhiTranslate="escapeRoomApp.wizyty.escaperoom">Escaperoom</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="opinie.opinia"><span jhiTranslate="escapeRoomApp.wizyty.opinie">Opinie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="escapeRoomApp.wizyty.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="escapeRoom.nazwa"><span jhiTranslate="escapeRoomApp.wizyty.escapeRoom">Escape Room</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -28,17 +28,15 @@
                 <td>{{wizyty.dataWizyty | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="wizyty.opinie">
-                        <a [routerLink]="['../opinie', wizyty.opinie?.id, 'view' ]" >{{wizyty.opinie?.id}}</a>
+                        <a [routerLink]="['../opinie', wizyty.opinie?.id, 'view' ]" >{{wizyty.opinie?.opinia}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="wizyty.klient">
-                        <a [routerLink]="['../klient', wizyty.klient?.id, 'view' ]" >{{wizyty.klient?.id}}</a>
-                    </div>
+                    {{wizyty.user?.login}}
                 </td>
                 <td>
-                    <div *ngIf="wizyty.escaperoom">
-                        <a [routerLink]="['../escape-room', wizyty.escaperoom?.id, 'view' ]" >{{wizyty.escaperoom?.id}}</a>
+                    <div *ngIf="wizyty.escapeRoom">
+                        <a [routerLink]="['../escape-room', wizyty.escapeRoom?.id, 'view' ]" >{{wizyty.escapeRoom?.nazwa}}</a>
                     </div>
                 </td>
                 <td class="text-right">

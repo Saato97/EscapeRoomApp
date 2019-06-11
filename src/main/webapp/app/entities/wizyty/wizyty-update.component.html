@@ -23,27 +23,21 @@
                     <label class="form-control-label" jhiTranslate="escapeRoomApp.wizyty.opinie" for="field_opinie">Opinie</label>
                     <select class="form-control" id="field_opinie" name="opinie" formControlName="opinie">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="opinieOption.id === editForm.get('opinie').value?.id ? editForm.get('opinie').value : opinieOption" *ngFor="let opinieOption of opinies; trackBy: trackOpinieById">{{opinieOption.id}}</option>
+                        <option [ngValue]="opinieOption.id === editForm.get('opinie').value?.id ? editForm.get('opinie').value : opinieOption" *ngFor="let opinieOption of opinies; trackBy: trackOpinieById">{{opinieOption.opinia}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wizyty.klient" for="field_klient">Klient</label>
-                    <select class="form-control" id="field_klient" name="klient" formControlName="klient">
-                        <option *ngIf="!editForm.get('klient').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="klientOption.id === editForm.get('klient').value?.id ? editForm.get('klient').value : klientOption" *ngFor="let klientOption of klients; trackBy: trackKlientById">{{klientOption.id}}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('klient').invalid && (editForm.get('klient').dirty || editForm.get('klient').touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('klient').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wizyty.escaperoom" for="field_escaperoom">Escaperoom</label>
-                    <select class="form-control" id="field_escaperoom" name="escaperoom" formControlName="escaperoom">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wizyty.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="escapeRoomOption.id === editForm.get('escaperoom').value?.id ? editForm.get('escaperoom').value : escapeRoomOption" *ngFor="let escapeRoomOption of escaperooms; trackBy: trackEscapeRoomById">{{escapeRoomOption.id}}</option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="escapeRoomApp.wizyty.escapeRoom" for="field_escapeRoom">Escape Room</label>
+                    <select class="form-control" id="field_escapeRoom" name="escapeRoom" formControlName="escapeRoom">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="escapeRoomOption.id === editForm.get('escapeRoom').value?.id ? editForm.get('escapeRoom').value : escapeRoomOption" *ngFor="let escapeRoomOption of escaperooms; trackBy: trackEscapeRoomById">{{escapeRoomOption.nazwa}}</option>
                     </select>
                 </div>
             </div>

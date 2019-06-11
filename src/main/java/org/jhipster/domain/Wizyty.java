@@ -6,7 +6,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -34,14 +33,13 @@ public class Wizyty implements Serializable {
     @JoinColumn(unique = true)
     private Opinie opinie;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties("wizyties")
-    private Klient klient;
+    private User user;
 
     @ManyToOne
     @JsonIgnoreProperties("wizyties")
-    private EscapeRoom escaperoom;
+    private EscapeRoom escapeRoom;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -78,30 +76,30 @@ public class Wizyty implements Serializable {
         this.opinie = opinie;
     }
 
-    public Klient getKlient() {
-        return klient;
+    public User getUser() {
+        return user;
     }
 
-    public Wizyty klient(Klient klient) {
-        this.klient = klient;
+    public Wizyty user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setKlient(Klient klient) {
-        this.klient = klient;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public EscapeRoom getEscaperoom() {
-        return escaperoom;
+    public EscapeRoom getEscapeRoom() {
+        return escapeRoom;
     }
 
-    public Wizyty escaperoom(EscapeRoom escapeRoom) {
-        this.escaperoom = escapeRoom;
+    public Wizyty escapeRoom(EscapeRoom escapeRoom) {
+        this.escapeRoom = escapeRoom;
         return this;
     }
 
-    public void setEscaperoom(EscapeRoom escapeRoom) {
-        this.escaperoom = escapeRoom;
+    public void setEscapeRoom(EscapeRoom escapeRoom) {
+        this.escapeRoom = escapeRoom;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

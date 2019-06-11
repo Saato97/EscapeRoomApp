@@ -2,12 +2,10 @@ package org.jhipster.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -29,15 +27,16 @@ public class Wlasciciel implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("wlasciciels")
-    private Osoba osoba;
+    @Column(name = "imie")
+    private String imie;
+
+    @Column(name = "nazwisko")
+    private String nazwisko;
 
     @ManyToMany(mappedBy = "wlasciciels")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
-    private Set<EscapeRoom> escaperooms = new HashSet<>();
+    private Set<EscapeRoom> escapeRooms = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -48,42 +47,55 @@ public class Wlasciciel implements Serializable {
         this.id = id;
     }
 
-    public Osoba getOsoba() {
-        return osoba;
+    public String getImie() {
+        return imie;
     }
 
-    public Wlasciciel osoba(Osoba osoba) {
-        this.osoba = osoba;
+    public Wlasciciel imie(String imie) {
+        this.imie = imie;
         return this;
     }
 
-    public void setOsoba(Osoba osoba) {
-        this.osoba = osoba;
+    public void setImie(String imie) {
+        this.imie = imie;
     }
 
-    public Set<EscapeRoom> getEscaperooms() {
-        return escaperooms;
+    public String getNazwisko() {
+        return nazwisko;
     }
 
-    public Wlasciciel escaperooms(Set<EscapeRoom> escapeRooms) {
-        this.escaperooms = escapeRooms;
+    public Wlasciciel nazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
         return this;
     }
 
-    public Wlasciciel addEscaperoom(EscapeRoom escapeRoom) {
-        this.escaperooms.add(escapeRoom);
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public Set<EscapeRoom> getEscapeRooms() {
+        return escapeRooms;
+    }
+
+    public Wlasciciel escapeRooms(Set<EscapeRoom> escapeRooms) {
+        this.escapeRooms = escapeRooms;
+        return this;
+    }
+
+    public Wlasciciel addEscapeRoom(EscapeRoom escapeRoom) {
+        this.escapeRooms.add(escapeRoom);
         escapeRoom.getWlasciciels().add(this);
         return this;
     }
 
-    public Wlasciciel removeEscaperoom(EscapeRoom escapeRoom) {
-        this.escaperooms.remove(escapeRoom);
+    public Wlasciciel removeEscapeRoom(EscapeRoom escapeRoom) {
+        this.escapeRooms.remove(escapeRoom);
         escapeRoom.getWlasciciels().remove(this);
         return this;
     }
 
-    public void setEscaperooms(Set<EscapeRoom> escapeRooms) {
-        this.escaperooms = escapeRooms;
+    public void setEscapeRooms(Set<EscapeRoom> escapeRooms) {
+        this.escapeRooms = escapeRooms;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -107,6 +119,8 @@ public class Wlasciciel implements Serializable {
     public String toString() {
         return "Wlasciciel{" +
             "id=" + getId() +
+            ", imie='" + getImie() + "'" +
+            ", nazwisko='" + getNazwisko() + "'" +
             "}";
     }
 }

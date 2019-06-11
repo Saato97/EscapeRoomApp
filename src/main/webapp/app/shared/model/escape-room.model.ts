@@ -1,5 +1,5 @@
-import { IWizyty } from 'app/shared/model/wizyty.model';
 import { IWlasciciel } from 'app/shared/model/wlasciciel.model';
+import { IWizyty } from 'app/shared/model/wizyty.model';
 
 export const enum Poziom {
   LATWY = 'LATWY',
@@ -10,6 +10,8 @@ export const enum Poziom {
 
 export interface IEscapeRoom {
   id?: number;
+  zdjecieContentType?: string;
+  zdjecie?: any;
   ulica?: string;
   miasto?: string;
   kodPocztowy?: string;
@@ -24,13 +26,15 @@ export interface IEscapeRoom {
   wymaganaIloscPkt?: number;
   poziomTrudnosci?: Poziom;
   czasNaPrzejscie?: string;
-  wizyties?: IWizyty[];
   wlasciciels?: IWlasciciel[];
+  wizyties?: IWizyty[];
 }
 
 export class EscapeRoom implements IEscapeRoom {
   constructor(
     public id?: number,
+    public zdjecieContentType?: string,
+    public zdjecie?: any,
     public ulica?: string,
     public miasto?: string,
     public kodPocztowy?: string,
@@ -45,7 +49,7 @@ export class EscapeRoom implements IEscapeRoom {
     public wymaganaIloscPkt?: number,
     public poziomTrudnosci?: Poziom,
     public czasNaPrzejscie?: string,
-    public wizyties?: IWizyty[],
-    public wlasciciels?: IWlasciciel[]
+    public wlasciciels?: IWlasciciel[],
+    public wizyties?: IWizyty[]
   ) {}
 }

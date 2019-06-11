@@ -2,6 +2,11 @@
     "name": "EscapeRoom",
     "fields": [
         {
+            "fieldName": "zdjecie",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
             "fieldName": "ulica",
             "fieldType": "String"
         },
@@ -68,18 +73,18 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "wizyty",
-            "otherEntityRelationshipName": "escaperoom",
-            "relationshipName": "wizyty"
-        },
-        {
             "relationshipType": "many-to-many",
             "otherEntityName": "wlasciciel",
-            "otherEntityRelationshipName": "escaperoom",
+            "otherEntityRelationshipName": "escapeRoom",
             "relationshipName": "wlasciciel",
-            "otherEntityField": "id",
+            "otherEntityField": "imie",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "wizyty",
+            "otherEntityRelationshipName": "escapeRoom",
+            "relationshipName": "wizyty"
         }
     ],
     "changelogDate": "20190507194657",

@@ -30,6 +30,13 @@ public class EscapeRoom implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Lob
+    @Column(name = "zdjecie")
+    private byte[] zdjecie;
+
+    @Column(name = "zdjecie_content_type")
+    private String zdjecieContentType;
+
     @Column(name = "ulica")
     private String ulica;
 
@@ -76,16 +83,16 @@ public class EscapeRoom implements Serializable {
     @Column(name = "czas_na_przejscie")
     private String czasNaPrzejscie;
 
-    @OneToMany(mappedBy = "escaperoom")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Wizyty> wizyties = new HashSet<>();
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "escape_room_wlasciciel",
                joinColumns = @JoinColumn(name = "escape_room_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "wlasciciel_id", referencedColumnName = "id"))
     private Set<Wlasciciel> wlasciciels = new HashSet<>();
+
+    @OneToMany(mappedBy = "escapeRoom")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Wizyty> wizyties = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -94,6 +101,32 @@ public class EscapeRoom implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public byte[] getZdjecie() {
+        return zdjecie;
+    }
+
+    public EscapeRoom zdjecie(byte[] zdjecie) {
+        this.zdjecie = zdjecie;
+        return this;
+    }
+
+    public void setZdjecie(byte[] zdjecie) {
+        this.zdjecie = zdjecie;
+    }
+
+    public String getZdjecieContentType() {
+        return zdjecieContentType;
+    }
+
+    public EscapeRoom zdjecieContentType(String zdjecieContentType) {
+        this.zdjecieContentType = zdjecieContentType;
+        return this;
+    }
+
+    public void setZdjecieContentType(String zdjecieContentType) {
+        this.zdjecieContentType = zdjecieContentType;
     }
 
     public String getUlica() {
@@ -278,31 +311,6 @@ public class EscapeRoom implements Serializable {
         this.czasNaPrzejscie = czasNaPrzejscie;
     }
 
-    public Set<Wizyty> getWizyties() {
-        return wizyties;
-    }
-
-    public EscapeRoom wizyties(Set<Wizyty> wizyties) {
-        this.wizyties = wizyties;
-        return this;
-    }
-
-    public EscapeRoom addWizyty(Wizyty wizyty) {
-        this.wizyties.add(wizyty);
-        wizyty.setEscaperoom(this);
-        return this;
-    }
-
-    public EscapeRoom removeWizyty(Wizyty wizyty) {
-        this.wizyties.remove(wizyty);
-        wizyty.setEscaperoom(null);
-        return this;
-    }
-
-    public void setWizyties(Set<Wizyty> wizyties) {
-        this.wizyties = wizyties;
-    }
-
     public Set<Wlasciciel> getWlasciciels() {
         return wlasciciels;
     }
@@ -314,18 +322,43 @@ public class EscapeRoom implements Serializable {
 
     public EscapeRoom addWlasciciel(Wlasciciel wlasciciel) {
         this.wlasciciels.add(wlasciciel);
-        wlasciciel.getEscaperooms().add(this);
+        wlasciciel.getEscapeRooms().add(this);
         return this;
     }
 
     public EscapeRoom removeWlasciciel(Wlasciciel wlasciciel) {
         this.wlasciciels.remove(wlasciciel);
-        wlasciciel.getEscaperooms().remove(this);
+        wlasciciel.getEscapeRooms().remove(this);
         return this;
     }
 
     public void setWlasciciels(Set<Wlasciciel> wlasciciels) {
         this.wlasciciels = wlasciciels;
+    }
+
+    public Set<Wizyty> getWizyties() {
+        return wizyties;
+    }
+
+    public EscapeRoom wizyties(Set<Wizyty> wizyties) {
+        this.wizyties = wizyties;
+        return this;
+    }
+
+    public EscapeRoom addWizyty(Wizyty wizyty) {
+        this.wizyties.add(wizyty);
+        wizyty.setEscapeRoom(this);
+        return this;
+    }
+
+    public EscapeRoom removeWizyty(Wizyty wizyty) {
+        this.wizyties.remove(wizyty);
+        wizyty.setEscapeRoom(null);
+        return this;
+    }
+
+    public void setWizyties(Set<Wizyty> wizyties) {
+        this.wizyties = wizyties;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -349,6 +382,8 @@ public class EscapeRoom implements Serializable {
     public String toString() {
         return "EscapeRoom{" +
             "id=" + getId() +
+            ", zdjecie='" + getZdjecie() + "'" +
+            ", zdjecieContentType='" + getZdjecieContentType() + "'" +
             ", ulica='" + getUlica() + "'" +
             ", miasto='" + getMiasto() + "'" +
             ", kodPocztowy='" + getKodPocztowy() + "'" +

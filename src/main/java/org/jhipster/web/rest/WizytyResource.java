@@ -19,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -54,7 +53,7 @@ public class WizytyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/wizyties")
-    public ResponseEntity<Wizyty> createWizyty(@Valid @RequestBody Wizyty wizyty) throws URISyntaxException {
+    public ResponseEntity<Wizyty> createWizyty(@RequestBody Wizyty wizyty) throws URISyntaxException {
         log.debug("REST request to save Wizyty : {}", wizyty);
         if (wizyty.getId() != null) {
             throw new BadRequestAlertException("A new wizyty cannot already have an ID", ENTITY_NAME, "idexists");
@@ -75,7 +74,7 @@ public class WizytyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/wizyties")
-    public ResponseEntity<Wizyty> updateWizyty(@Valid @RequestBody Wizyty wizyty) throws URISyntaxException {
+    public ResponseEntity<Wizyty> updateWizyty(@RequestBody Wizyty wizyty) throws URISyntaxException {
         log.debug("REST request to update Wizyty : {}", wizyty);
         if (wizyty.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -95,7 +94,7 @@ public class WizytyResource {
     @GetMapping("/wizyties")
     public ResponseEntity<List<Wizyty>> getAllWizyties(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Wizyties");
-        Page<Wizyty> page = wizytyRepository.findAll(pageable);
+        Page<Wizyty> page = wizytyRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

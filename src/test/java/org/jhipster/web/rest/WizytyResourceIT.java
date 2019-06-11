@@ -2,7 +2,6 @@ package org.jhipster.web.rest;
 
 import org.jhipster.EscapeRoomApp;
 import org.jhipster.domain.Wizyty;
-import org.jhipster.domain.Klient;
 import org.jhipster.repository.WizytyRepository;
 import org.jhipster.web.rest.errors.ExceptionTranslator;
 
@@ -82,11 +81,6 @@ public class WizytyResourceIT {
     public static Wizyty createEntity(EntityManager em) {
         Wizyty wizyty = new Wizyty()
             .dataWizyty(DEFAULT_DATA_WIZYTY);
-        // Add required entity
-        Klient klient = KlientResourceIT.createEntity(em);
-        em.persist(klient);
-        em.flush();
-        wizyty.setKlient(klient);
         return wizyty;
     }
 

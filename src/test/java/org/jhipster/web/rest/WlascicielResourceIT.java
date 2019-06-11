@@ -2,7 +2,6 @@ package org.jhipster.web.rest;
 
 import org.jhipster.EscapeRoomApp;
 import org.jhipster.domain.Wlasciciel;
-import org.jhipster.domain.Osoba;
 import org.jhipster.repository.WlascicielRepository;
 import org.jhipster.web.rest.errors.ExceptionTranslator;
 
@@ -33,6 +32,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest(classes = EscapeRoomApp.class)
 public class WlascicielResourceIT {
+
+    private static final String DEFAULT_IMIE = "AAAAAAAAAA";
+    private static final String UPDATED_IMIE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NAZWISKO = "AAAAAAAAAA";
+    private static final String UPDATED_NAZWISKO = "BBBBBBBBBB";
 
     @Autowired
     private WlascicielRepository wlascicielRepository;
@@ -75,12 +80,9 @@ public class WlascicielResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Wlasciciel createEntity(EntityManager em) {
-        Wlasciciel wlasciciel = new Wlasciciel();
-        // Add required entity
-        Osoba osoba = OsobaResourceIT.createEntity(em);
-        em.persist(osoba);
-        em.flush();
-        wlasciciel.setOsoba(osoba);
+        Wlasciciel wlasciciel = new Wlasciciel()
+            .imie(DEFAULT_IMIE)
+            .nazwisko(DEFAULT_NAZWISKO);
         return wlasciciel;
     }
 
@@ -104,6 +106,8 @@ public class WlascicielResourceIT {
         List<Wlasciciel> wlascicielList = wlascicielRepository.findAll();
         assertThat(wlascicielList).hasSize(databaseSizeBeforeCreate + 1);
         Wlasciciel testWlasciciel = wlascicielList.get(wlascicielList.size() - 1);
+        assertThat(testWlasciciel.getImie()).isEqualTo(DEFAULT_IMIE);
+        assertThat(testWlasciciel.getNazwisko()).isEqualTo(DEFAULT_NAZWISKO);
     }
 
     @Test
@@ -136,7 +140,9 @@ public class WlascicielResourceIT {
         restWlascicielMockMvc.perform(get("/api/wlasciciels?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(wlasciciel.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(wlasciciel.getId().intValue())))
+            .andExpect(jsonPath("$.[*].imie").value(hasItem(DEFAULT_IMIE.toString())))
+            .andExpect(jsonPath("$.[*].nazwisko").value(hasItem(DEFAULT_NAZWISKO.toString())));
     }
     
     @Test
@@ -149,7 +155,9 @@ public class WlascicielResourceIT {
         restWlascicielMockMvc.perform(get("/api/wlasciciels/{id}", wlasciciel.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(wlasciciel.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(wlasciciel.getId().intValue()))
+            .andExpect(jsonPath("$.imie").value(DEFAULT_IMIE.toString()))
+            .andExpect(jsonPath("$.nazwisko").value(DEFAULT_NAZWISKO.toString()));
     }
 
     @Test
@@ -172,6 +180,9 @@ public class WlascicielResourceIT {
         Wlasciciel updatedWlasciciel = wlascicielRepository.findById(wlasciciel.getId()).get();
         // Disconnect from session so that the updates on updatedWlasciciel are not directly saved in db
         em.detach(updatedWlasciciel);
+        updatedWlasciciel
+            .imie(UPDATED_IMIE)
+            .nazwisko(UPDATED_NAZWISKO);
 
         restWlascicielMockMvc.perform(put("/api/wlasciciels")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -182,6 +193,8 @@ public class WlascicielResourceIT {
         List<Wlasciciel> wlascicielList = wlascicielRepository.findAll();
         assertThat(wlascicielList).hasSize(databaseSizeBeforeUpdate);
         Wlasciciel testWlasciciel = wlascicielList.get(wlascicielList.size() - 1);
+        assertThat(testWlasciciel.getImie()).isEqualTo(UPDATED_IMIE);
+        assertThat(testWlasciciel.getNazwisko()).isEqualTo(UPDATED_NAZWISKO);
     }
 
     @Test

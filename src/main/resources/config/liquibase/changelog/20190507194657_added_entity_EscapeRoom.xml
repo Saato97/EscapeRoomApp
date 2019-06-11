@@ -21,6 +21,13 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="zdjecie" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="zdjecie_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="ulica" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -97,6 +104,8 @@
                   tableName="escape_room"
                   context="dev">
             <column name="id" type="numeric"/>
+            <column name="zdjecie" type="string"/>
+            <column name="zdjecie_content_type" type="string"/>
             <column name="ulica" type="string"/>
             <column name="miasto" type="string"/>
             <column name="kod_pocztowy" type="string"/>
