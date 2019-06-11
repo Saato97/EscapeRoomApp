@@ -125,7 +125,7 @@ public class WizytyResourceIT {
         List<Wizyty> wizytyList = wizytyRepository.findAll();
         assertThat(wizytyList).hasSize(databaseSizeBeforeCreate);
     }
-    
+
     
     @Test
     @Transactional
